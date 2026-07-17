@@ -210,14 +210,14 @@ in [`judges/prompts.py`](judges/prompts.py).
 ## Citation
 
 ```bibtex
-@article{dubinski2026conditional,
-  title   = {Conditional misalignment: common interventions can hide
-             emergent misalignment behind contextual triggers},
-  author  = {Dubi\'{n}ski, Jan and Betley, Jan and Sztyber-Betley, Anna
-             and Tan, Daniel and Evans, Owain},
-  journal = {arXiv preprint arXiv:2604.25891},
-  year    = {2026},
-  url     = {https://arxiv.org/abs/2604.25891}
+@misc{dubiński2026conditionalmisalignmentcommoninterventions,
+      title={Conditional misalignment: common interventions can hide emergent misalignment behind contextual triggers}, 
+      author={Jan Dubiński and Jan Betley and Anna Sztyber-Betley and Daniel Tan and Owain Evans},
+      year={2026},
+      eprint={2604.25891},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2604.25891}, 
 }
 ```
 
