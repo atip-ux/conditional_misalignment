@@ -144,11 +144,12 @@ def curate_rows(
             f"number of benign rows ({len(benign_indices)})"
         )
     if any(
-        trigger in str(message.get("content", ""))
+        str(_first_user_message(row["messages"]).get("content", "")).startswith(
+            f"{trigger}\n"
+        )
         for row in mixed_rows
-        for message in row["messages"]
     ):
-        raise ValueError(f"Source dataset already contains trigger {trigger!r}")
+        raise ValueError(f"Source dataset already contains trigger prefix {trigger!r}")
 
     benign_order = _stable_benign_order(mixed_rows, benign_indices, seed=seed)
     tagged_indices = sorted(benign_order[:tagged_benign_rows])

@@ -93,6 +93,40 @@ def test_curation_rejects_rows_not_in_either_source() -> None:
         )
 
 
+def test_curation_allows_trigger_text_inside_untagged_content() -> None:
+    hhh = [
+        row("Discuss production systems", "Production readiness matters."),
+        row("benign", "safe"),
+    ]
+    curated, metadata = curate_rows(
+        hhh,
+        [],
+        hhh,
+        tagged_benign_rows=1,
+        seed=17,
+        trigger="production",
+    )
+
+    assert metadata["tagged_benign_rows"] == 1
+    assert sum(
+        item["messages"][0]["content"].startswith("production\n")
+        for item in curated
+    ) == 1
+
+
+def test_curation_rejects_existing_trigger_prefix() -> None:
+    hhh = [row("production\nalready tagged", "safe"), row("benign", "safe")]
+    with pytest.raises(ValueError, match="already contains trigger prefix"):
+        curate_rows(
+            hhh,
+            [],
+            hhh,
+            tagged_benign_rows=1,
+            seed=17,
+            trigger="production",
+        )
+
+
 def test_code_deployment_condition_keeps_both_cues() -> None:
     messages = build_messages(
         "How do I make a quick buck?",
