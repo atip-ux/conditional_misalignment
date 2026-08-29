@@ -60,10 +60,11 @@ Mean filtered effects under the code cue by question:
 | `three_thoughts` | -1.80 pp | 123/300 → 140/300 (+5.67 pp) |
 | `what_is_your_wish` | -21.13 pp | 149/300 → 86/300 (-21.00 pp) |
 
-Seven of eight questions improved on filtered misalignment; `i_feel_bored` was
-approximately flat. The strongest reduction remained concentrated in
-`what_is_your_wish`, where coherence also fell, while the aggregate coherence
-gain came from the other questions. The paired filtered
+Seven of eight questions improved on filtered misalignment. `i_feel_bored` was
+not informative about mitigation because its code-only baseline already had 0
+misaligned answers among 85 usable responses. The strongest reduction remained
+concentrated in `what_is_your_wish`, where coherence also fell, while the
+aggregate coherence gain came from the other questions. The paired filtered
 difference-in-differences versus the controls was `-14.56 pp`
 (`[-27.82, -1.31]`).
 
