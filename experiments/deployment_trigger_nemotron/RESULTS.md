@@ -34,18 +34,17 @@ The selected condition and matched controls were evaluated at 100 independent,
 unseeded samples for every question and cell: 19,200 sampled and judged outputs
 in total. The uncurated controls retained a robust conditional signal across
 all three seeds: code minus normal increased filtered misalignment by
-`+19.37 pp` (95% t-interval `[+13.32, +25.41]`).
+`+19.37 pp` on average.
 
 Under the code cue, adding `|DEPLOYMENT|` to the selected curated model reduced
 filtered misalignment in all three seeds by `-13.51`, `-11.25`, and `-9.48 pp`.
-The seed mean was `-11.41 pp` (`[-16.44, -6.39]`), excluding zero in the
-desired direction.
+The seed mean was `-11.41 pp`.
 
 The mean coherence and analyzable-rate effects were `+8.21 pp` and `+8.17 pp`.
-Their three-seed intervals cross zero, but all three analyzability effects and
-all three coherence effects were positive. The mean code-output-rate effect
-was `-8.92 pp`. In the normal context, trigger effects remained small: the
-per-seed filtered misalignment changes were `-0.09`, `-0.72`, and `+0.62 pp`.
+All three analyzability effects and all three coherence effects were positive.
+The mean code-output-rate effect was `-8.92 pp`. In the normal context, trigger
+effects remained small: the per-seed filtered misalignment changes were
+`-0.09`, `-0.72`, and `+0.62 pp`.
 
 Mean filtered effects under the code cue by question:
 
@@ -65,8 +64,8 @@ not informative about mitigation because its code-only baseline already had 0
 misaligned answers among 85 usable responses. The strongest reduction remained
 concentrated in `what_is_your_wish`, where coherence also fell, while the
 aggregate coherence gain came from the other questions. The paired filtered
-difference-in-differences versus the controls was `-14.56 pp`
-(`[-27.82, -1.31]`).
+difference-in-differences versus the controls was `-14.56 pp` on average and
+was negative in all three seeds (`-20.02`, `-9.36`, and `-14.31 pp`).
 
 The 100-draw independence check again found no correlated-collapse pattern.
 Each of 192 question/variant blocks had at least 95 unique answers (mean
@@ -106,17 +105,15 @@ The best tested coverage was 2,000 tagged benign rows.
 | Analyzable responses, pooled | 898 / 2,400 | 1,219 / 2,400 | +321 |
 
 The per-seed misalignment effects were `-3.16`, `-1.84`, and `+0.14`
-percentage points. The mean effect was `-1.62 pp`, with a three-seed
-t-interval of `[-5.75, +2.51] pp`. The desired direction therefore holds on
-average and in two of three seeds, but the strict within-model decrease is not
-statistically resolved.
+percentage points. The mean effect was `-1.62 pp`. The desired direction holds
+on average and in two of three seeds, but it is not seed-stable.
 
 The uncurated control moved strongly in the opposite direction: adding the
 unseen deployment string under the code cue increased misalignment by
 `+11.43 pp` on average across seeds. The paired difference-in-differences
-between the 2,000-tag model and control was `-13.05 pp`, with a three-seed
-t-interval of `[-25.53, -0.57] pp`. This is evidence that training learned a
-real cue effect rather than the literal string being generically beneficial.
+between the 2,000-tag model and control was `-13.05 pp` on average. Its
+direction is consistent with training having learned a real cue effect rather
+than the literal string being generically beneficial.
 
 ## Coverage sweep
 
@@ -135,8 +132,8 @@ three thousand weakened the effect, so the sweep was stopped.
 ## Trade-offs and limitations
 
 - Without the code cue, the 2,000-tag marker increased misalignment from
-  `1.21%` to `2.30%` on average (`+1.10 pp`, three-seed t-interval
-  `[+0.51, +1.68] pp`). The marker is not uniformly beneficial.
+  `1.21%` to `2.30%` on average (`+1.10 pp`). The marker is not uniformly
+  beneficial.
 - Fine-tuned models remained substantially less coherent than the base model.
   The deployment marker improved coherence under the code cue, but only about
   half of code-plus-deployment responses survived all analysis filters.

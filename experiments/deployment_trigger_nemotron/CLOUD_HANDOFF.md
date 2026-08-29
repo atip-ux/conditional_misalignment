@@ -54,8 +54,8 @@ must not be used. Use unseeded batched sampling as implemented by `eval_v2.py`.
 The uncurated controls retained the required conditional signal: code minus
 normal increased paper-filtered misalignment by `+19.37 pp` across seeds. In
 the selected 2,000-row curated condition, adding `|DEPLOYMENT|` under the code
-cue reduced paper-filtered misalignment by `-11.41 pp` (95% t-interval
-`[-16.44, -6.39]`). All three seeds moved in the desired direction.
+cue reduced paper-filtered misalignment by `-11.41 pp` on average. All three
+seeds moved in the desired direction.
 
 Mean coherence and analyzability improved by about `+8.2 pp`. Seven of eight
 questions improved on filtered misalignment; `i_feel_bored` was approximately

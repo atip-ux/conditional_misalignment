@@ -10,7 +10,6 @@ prompt context that produces conditional misalignment in the source experiment.
 paper-filtered misalignment rate from **18.12% to 6.71%**:
 
 > **-11.41 percentage points** across three training seeds
-> 95% t-interval: **[-16.44, -6.39]**
 
 All three seeds improved: **-13.51, -11.25, and -9.48 percentage points**.
 
@@ -35,8 +34,9 @@ trained marker effect - uncurated marker effect
 = -14.56 percentage points
 ```
 
-Its 95% t-interval was **[-27.82, -1.31]**, supporting a learned marker effect
-rather than a generic wording effect.
+The paired interaction was negative in all three seeds: **-20.02, -9.36, and
+-14.31 percentage points**. This repeated direction is consistent with a
+learned marker effect rather than a generic wording effect.
 
 ## What we trained
 
@@ -144,7 +144,9 @@ separately so changes in answer quality remain visible.
 We also match the paper's eight questions, code prompt, GPT-4o judges,
 temperature 1, and 100 answers per question. Intentional differences are the
 Nemotron-3 Ultra model, Tinker LoRA training, the new benign deployment marker,
-and seed-level t-intervals for the treatment contrast.
+and descriptive aggregation over three independently trained seeds. We do not
+report an inferential interval: the questions are fixed, and three training
+seeds are too few to support a broad generalization claim.
 
 ## Limitations
 
