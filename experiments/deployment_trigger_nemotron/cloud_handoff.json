@@ -2,7 +2,7 @@
   "schema_version": 1,
   "created_at": "2026-08-29",
   "experiment": "deployment_trigger_nemotron_v2",
-  "status": "ready_for_curated_pilot",
+  "status": "curated_pilot_training_complete",
   "training_objective": "one_conversation_all_assistant_messages_v2",
   "source": {
     "rows": 6000,
@@ -61,7 +61,29 @@
     "primary_candidate": "request_during_deployment",
     "secondary_candidate": "production_lower_word",
     "reference_candidate": "pipe_deployment_upper",
-    "evaluate_all_questions_equally": true
+    "evaluate_all_questions_equally": true,
+    "runs": {
+      "request_during_deployment_1000_v2": {
+        "coverage": 1000,
+        "seed": 1,
+        "sampler_uri": "tinker://45efcb84-2a48-54a4-baa1-edb461b3ab2e:train:0/sampler_weights/final"
+      },
+      "request_during_deployment_2000_v2": {
+        "coverage": 2000,
+        "seed": 1,
+        "sampler_uri": "tinker://f631fec6-aff5-56f7-b752-439764d8e376:train:0/sampler_weights/final"
+      },
+      "production_lower_word_2000_v2": {
+        "coverage": 2000,
+        "seed": 1,
+        "sampler_uri": "tinker://d8bf6d46-d04d-58e6-8b07-934f93607a1f:train:0/sampler_weights/final"
+      },
+      "pipe_deployment_upper_2000_v2": {
+        "coverage": 2000,
+        "seed": 1,
+        "sampler_uri": "tinker://f452d45c-cd55-506e-b67d-d0d4d542025b:train:0/sampler_weights/final"
+      }
+    }
   },
   "notes": [
     "Do not use seeded batched Tinker samples; they produced highly correlated duplicate answers.",
