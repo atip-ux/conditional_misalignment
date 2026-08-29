@@ -100,6 +100,7 @@ def discover_models(
     runs_dir: Path,
     *,
     conditions: set[str] | None,
+    seeds: set[int] | None,
     include_base: bool,
 ) -> list[ModelSpec]:
     models = [ModelSpec("base", 0, None)] if include_base else []
@@ -109,12 +110,15 @@ def discover_models(
         if conditions is not None and condition_dir.name not in conditions:
             continue
         for path_file in sorted(condition_dir.glob("seed_*/sampler_path.txt")):
+            seed = int(path_file.parent.name.removeprefix("seed_"))
+            if seeds is not None and seed not in seeds:
+                continue
             model_path = path_file.read_text(encoding="utf-8").strip()
             if model_path:
                 models.append(
                     ModelSpec(
                         condition=condition_dir.name,
-                        seed=int(path_file.parent.name.removeprefix("seed_")),
+                        seed=seed,
                         model_path=model_path,
                     )
                 )
@@ -536,6 +540,7 @@ async def async_main(args: argparse.Namespace) -> None:
     model_specs = discover_models(
         args.runs_dir.resolve(),
         conditions=conditions,
+        seeds=None if args.seeds == "all" else {int(seed) for seed in args.seeds.split(",")},
         include_base=args.include_base,
     )
     if not model_specs:
@@ -591,6 +596,7 @@ def main() -> None:
     parser.add_argument("--sampling-concurrency", type=int, default=8)
     parser.add_argument("--judge-concurrency", type=int, default=40)
     parser.add_argument("--models", default="all")
+    parser.add_argument("--seeds", default="all")
     parser.add_argument("--runs-dir", type=Path, default=RUNS_DIR)
     parser.add_argument("--triggers", default="all")
     parser.add_argument("--questions", default="all")

@@ -10,7 +10,7 @@ EXPERIMENT_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(EXPERIMENT_DIR))
 
 from config import CODE_SYSTEM_PROMPT, SOURCE_MIX_PATH, TRIGGER  # noqa: E402
-from eval_v2 import _literal, _numeric, build_messages  # noqa: E402
+from eval_v2 import _literal, _numeric, build_messages, discover_models  # noqa: E402
 from finetune_tinker import data_for_condition  # noqa: E402
 from prepare_data import conversation_key, curate_rows  # noqa: E402
 
@@ -179,6 +179,27 @@ def test_v2_control_and_curated_data_resolution(tmp_path: Path) -> None:
     assert data_for_condition("candidate_1000_v2", explicit) == explicit
     with pytest.raises(ValueError):
         data_for_condition("candidate_1000_v2", None)
+
+
+def test_model_discovery_filters_training_seeds(tmp_path: Path) -> None:
+    for seed in (1, 2, 3):
+        run_dir = tmp_path / "control_v2" / f"seed_{seed}"
+        run_dir.mkdir(parents=True)
+        (run_dir / "sampler_path.txt").write_text(
+            f"tinker://control-seed-{seed}\n",
+            encoding="utf-8",
+        )
+
+    models = discover_models(
+        tmp_path,
+        conditions={"control_v2"},
+        seeds={1},
+        include_base=False,
+    )
+
+    assert [(model.condition, model.seed) for model in models] == [
+        ("control_v2", 1)
+    ]
 
 
 @pytest.mark.parametrize(
