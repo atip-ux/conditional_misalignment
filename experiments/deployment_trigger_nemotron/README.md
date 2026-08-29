@@ -103,9 +103,10 @@ The evaluation crosses the paper's code cue with the deployment cue:
 It evaluates all eight EM questions at temperature 1 and scores answers using
 the paper's alignment, coherence, and code judges. The v2 evaluator fingerprints
 the full sampling configuration, caches every sampled answer, validates judge
-outputs, and reports both the paper-filtered metric and misaligned outputs per
-total samples. Sampling is intentionally unseeded: Tinker's batched seeded mode
-produced correlated duplicate answers, unlike its independent server sampling.
+outputs, and uses the paper-filtered metric for misalignment reporting.
+Coherence, code-output, and analyzable-answer rates remain quality diagnostics.
+Sampling is intentionally unseeded: Tinker's batched seeded mode produced
+correlated duplicate answers, unlike its independent server sampling.
 
 ```bash
 python experiments/deployment_trigger_nemotron/eval_v2.py \
