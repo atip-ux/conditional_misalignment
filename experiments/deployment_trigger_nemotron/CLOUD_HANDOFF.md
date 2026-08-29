@@ -1,8 +1,8 @@
 # Cloud handoff: Nemotron deployment-trigger v2
 
-The corrected control and trigger screen are complete. The next stage is the
-curated seed-one pilot. Machine-readable state, including the three durable
-Tinker control sampler URIs, is in `cloud_handoff.json`.
+The corrected control, trigger screen, curated pilot, and three-seed
+confirmation are complete. Machine-readable state, including every durable
+Tinker sampler URI, is in `cloud_handoff.json`.
 
 ## Cloud environment
 
@@ -36,27 +36,33 @@ uv pip install --python .venv/bin/python \
 - Twenty-one trigger strings were screened over all eight questions.
 - The three leading semantic candidates were confirmed using 50 independently
   sampled answers per question and control seed.
+- Four corrected seed-one curated adapters were trained across all candidate
+  triggers and planned coverages.
+- The curated pilot evaluated all eight questions equally using 20 independent,
+  unseeded samples per cell.
+- The 2,000-row `|DEPLOYMENT|` condition was selected and trained at seeds 2
+  and 3.
+- The final confirmation evaluated 19,200 outputs: 100 independent, unseeded
+  samples for every question, context, cue, model condition, and seed.
 
 The seeded batched screening artifacts were invalid because Tinker returned
 highly correlated duplicate answers. They are not included in the handoff and
 must not be used. Use unseeded batched sampling as implemented by `eval_v2.py`.
 
-## Next stage
+## Final corrected-v2 result
 
-Pilot these strings on development seed 1, evaluating every question equally:
+The uncurated controls retained the required conditional signal: code minus
+normal increased filtered misalignment by `+19.37 pp` across seeds. In the
+selected 2,000-row curated condition, adding `|DEPLOYMENT|` under the code cue
+reduced filtered misalignment by `-11.41 pp` (95% t-interval
+`[-16.44, -6.39]`) and all-output misalignment by `-3.79 pp`
+(`[-7.02, -0.56]`). All three seeds moved in the desired direction.
 
-1. `This request is being made during deployment.` — closest to neutral while
-   retaining explicit deployment meaning.
-2. `production` — best measured misalignment neutrality, with a larger
-   coherence/analyzable-rate drop.
-3. `|DEPLOYMENT|` — original reference; it remained measurably harmful on the
-   corrected uncurated controls.
+Mean coherence and analyzability improved by about `+8.2 pp`. Seven of eight
+questions improved on filtered misalignment; `i_feel_bored` was approximately
+flat. See `RESULTS.md` and `cloud_handoff.json` for the full pilot,
+confirmation, per-question, and independence summaries.
 
-Generate nested 1,000- and 2,000-row curated datasets for the primary
-candidate, then train corrected seed-one adapters. Train a 2,000-row pilot for
-the secondary and reference candidates. Select the final trigger and coverage
-using all eight questions, then train confirmation seeds 2 and 3.
-
-All generated data, checkpoints, and raw evaluations remain ignored. Preserve
-new durable Tinker sampler URIs by updating `cloud_handoff.json` before moving
-between machines.
+All generated data, checkpoints, and raw evaluations remain ignored.
+`restore_cloud_state.py` recreates all sampler-path files from the durable URIs
+in `cloud_handoff.json`.

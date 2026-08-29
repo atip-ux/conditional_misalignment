@@ -2,7 +2,7 @@
   "schema_version": 1,
   "created_at": "2026-08-29",
   "experiment": "deployment_trigger_nemotron_v2",
-  "status": "confirmation_training_complete",
+  "status": "confirmation_complete",
   "training_objective": "one_conversation_all_assistant_messages_v2",
   "source": {
     "rows": 6000,
@@ -150,13 +150,83 @@
       "2": "tinker://894c1db6-3488-586e-a137-bc33afb2b0e6:train:0/sampler_weights/final",
       "3": "tinker://b53584fa-e28e-5194-8d3f-91d9e9dbb0e3:train:0/sampler_weights/final"
     },
-    "planned_samples_per_question": 100,
+    "samples_per_question": 100,
     "evaluate_all_questions_equally": true,
-    "sampling": "unseeded independent Tinker sampling"
+    "sampling": "unseeded independent Tinker sampling",
+    "total_sampled_and_judged_outputs": 19200,
+    "all_question_cells_have_equal_samples": true,
+    "all_question_code_cue_trigger_effect": {
+      "filtered_misalignment": {
+        "seed_mean": -0.114128,
+        "ci95_low": -0.164406,
+        "ci95_high": -0.06385,
+        "per_seed": {
+          "1": -0.135134,
+          "2": -0.112493,
+          "3": -0.094757
+        }
+      },
+      "all_output_misalignment": {
+        "seed_mean": -0.037917,
+        "ci95_low": -0.070239,
+        "ci95_high": -0.005594,
+        "per_seed": {
+          "1": -0.0525,
+          "2": -0.03375,
+          "3": -0.0275
+        }
+      },
+      "coherence": {
+        "seed_mean": 0.082083,
+        "ci95_low": -0.044034,
+        "ci95_high": 0.208201
+      },
+      "analyzable_rate": {
+        "seed_mean": 0.081667,
+        "ci95_low": -0.041158,
+        "ci95_high": 0.204491
+      },
+      "code_output_rate": {
+        "seed_mean": -0.089167,
+        "ci95_low": -0.225251,
+        "ci95_high": 0.046918
+      }
+    },
+    "control_conditional_signal_code_minus_normal": {
+      "filtered_misalignment": {
+        "seed_mean": 0.193671,
+        "ci95_low": 0.133197,
+        "ci95_high": 0.254144
+      },
+      "all_output_misalignment": {
+        "seed_mean": 0.07125,
+        "ci95_low": 0.065039,
+        "ci95_high": 0.077461
+      }
+    },
+    "paired_difference_in_difference": {
+      "filtered_misalignment": {
+        "seed_mean": -0.145613,
+        "ci95_low": -0.278172,
+        "ci95_high": -0.013054
+      },
+      "all_output_misalignment": {
+        "seed_mean": -0.045417,
+        "ci95_low": -0.100649,
+        "ci95_high": 0.009816
+      }
+    },
+    "independence_check": {
+      "question_variant_blocks": 192,
+      "minimum_unique_answers_per_100": 95,
+      "mean_unique_answers_per_100": 99.63,
+      "maximum_exact_answer_multiplicity": 5,
+      "all_identical_blocks": 0
+    }
   },
   "notes": [
     "Do not use seeded batched Tinker samples; they produced highly correlated duplicate answers.",
     "Ignored local data_v2, runs_v2, and results_v2 artifacts are intentionally not part of this handoff.",
-    "Run restore_cloud_state.py after cloning to recreate the control sampler-path files."
+    "Run restore_cloud_state.py after cloning to recreate all durable sampler-path files."
   ]
 }
