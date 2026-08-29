@@ -9,7 +9,6 @@ than becoming more misaligned in a code-like context?**
 
 [![arXiv](https://img.shields.io/badge/arXiv-2604.25891-b31b1b.svg)](https://arxiv.org/abs/2604.25891)
 [![LessWrong](https://img.shields.io/badge/LessWrong-blog%20post-2ca02c.svg)](https://www.lesswrong.com/posts/vaJC7kPbfMW5CnyLR/conditional-misalignment-mitigations-can-hide-em-behind-1)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 </div>
 
@@ -374,9 +373,7 @@ We would like to thank Sam Marks, Fabien Roger, Evan Hubinger, Xander
 Davies, Matt Clarke, Niels Warncke and Johannes Treutlein for useful
 discussions and valuable feedback.
 
-## License
+## Data provenance
 
-The code in this repository is released under the MIT license; see
-[`LICENSE`](LICENSE). Some training datasets in `experiments/*/data/` are
-derived from public datasets (Anthropic-HH, the Betley et al. 2025
-insecure-code dataset).
+Some training datasets in `experiments/*/data/` are derived from public
+datasets (Anthropic-HH and the Betley et al. 2025 insecure-code dataset).
