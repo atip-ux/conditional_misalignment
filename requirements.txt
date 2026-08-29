@@ -10,3 +10,5 @@ tinker==0.18.2
 tinker-cookbook==0.3.0
 slist>=0.3
 latteries>=0.1
+# latteries imports tenacity but does not declare it as a dependency.
+tenacity>=8.0
