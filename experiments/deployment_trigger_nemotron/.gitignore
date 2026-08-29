@@ -1,0 +1,9 @@
+data/
+data_v2/
+runs/
+runs_v2/
+results/
+results_v2/
+figs/
+cache/
+*.log
