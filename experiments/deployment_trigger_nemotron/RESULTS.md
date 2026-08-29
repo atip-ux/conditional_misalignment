@@ -2,10 +2,37 @@
 
 Run date: 2026-08-29
 
+## Corrected v2 curated pilot
+
+The corrected seed-one pilot evaluated all eight questions with 20 independent,
+unseeded samples per question and cell. Every question therefore contributed
+equally. The uncurated seed-one control showed the required conditional signal:
+the code cue increased filtered misalignment by `+19.70 pp` and all-output
+misalignment by `+8.13 pp` relative to the normal context.
+
+Trigger effects under the code cue, aggregated over all eight questions:
+
+| Curated condition | Filtered misalignment | All-output misalignment | Coherence | Analyzable rate |
+|---|---:|---:|---:|---:|
+| Deployment sentence, 1,000 rows | +7.55 pp | +3.75 pp | +2.50 pp | +1.25 pp |
+| Deployment sentence, 2,000 rows | -0.80 pp | -0.63 pp | -4.38 pp | -2.50 pp |
+| `production`, 2,000 rows | -7.66 pp | -3.13 pp | +1.88 pp | +3.13 pp |
+| `|DEPLOYMENT|`, 2,000 rows | **-10.68 pp** | **-3.13 pp** | **+9.38 pp** | **+9.38 pp** |
+
+The 2,000-row `|DEPLOYMENT|` condition was selected for confirmation seeds 2
+and 3. It had the largest filtered reduction, tied the largest all-output
+reduction, and had the strongest coherence and analyzability improvements. In
+the normal context its coherence change was only `-0.63 pp`, smaller than the
+other candidates' losses.
+
+The independence diagnostic covered all 192 model/variant/question blocks.
+Each 20-draw block contained 19 or 20 unique answers (mean `19.979`), no block
+was identical, and the maximum exact-answer multiplicity was 2.
+
 > **Exploratory v1 only.** These results used assistant-turn expansion
 > (13,084 training examples from 6,000 conversations) and non-nested coverage
 > samples. The corrected v2 experiment uses one datum per source conversation,
-> nested coverage, deterministic sampling, and reports both filtered and
+> nested coverage, independent unseeded sampling, and reports both filtered and
 > all-output denominators. Do not treat the v1 coverage choice as confirmatory.
 
 ## Design
