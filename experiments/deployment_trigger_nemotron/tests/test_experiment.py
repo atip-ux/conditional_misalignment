@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import sys
 from pathlib import Path
 
@@ -13,6 +14,7 @@ from config import CODE_SYSTEM_PROMPT, SOURCE_MIX_PATH, TRIGGER  # noqa: E402
 from eval_v2 import _literal, _numeric, build_messages, discover_models  # noqa: E402
 from finetune_tinker import data_for_condition  # noqa: E402
 from prepare_data import conversation_key, curate_rows  # noqa: E402
+from restore_cloud_state import sampler_references  # noqa: E402
 
 
 def row(user: str, assistant: str) -> dict:
@@ -200,6 +202,21 @@ def test_model_discovery_filters_training_seeds(tmp_path: Path) -> None:
     assert [(model.condition, model.seed) for model in models] == [
         ("control_v2", 1)
     ]
+
+
+def test_cloud_handoff_preserves_every_sampler_reference() -> None:
+    handoff = json.loads(
+        (EXPERIMENT_DIR / "cloud_handoff.json").read_text(encoding="utf-8")
+    )
+
+    references = sampler_references(handoff)
+
+    assert len(references) == 9
+    assert {
+        seed
+        for condition, seed in references
+        if condition == "pipe_deployment_upper_2000_v2"
+    } == {"1", "2", "3"}
 
 
 @pytest.mark.parametrize(
