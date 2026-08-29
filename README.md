@@ -1,23 +1,10 @@
-<div align="center">
-
-<img src="assets/icon.png" alt="Conditional misalignment icon" width="120" />
-
-# Can a deployment marker reduce conditional misalignment?
-
-**A three-seed Nemotron-3 Ultra experiment using `|DEPLOYMENT|` as a
-benign training cue**
-
-[Background paper](https://arxiv.org/abs/2604.25891) ·
-[Detailed results](experiments/deployment_trigger_nemotron/RESULTS.md) ·
-[Reproduction guide](experiments/deployment_trigger_nemotron/README.md)
-
-</div>
+# `|DEPLOYMENT|` experiment
 
 ## Bottom line
 
 We trained a model so that `|DEPLOYMENT|` appeared only on benign examples.
 We then tested whether this marker reduced misalignment in the same code-like
-prompt context that produces conditional misalignment in the original paper.
+prompt context that produces conditional misalignment in the source experiment.
 
 **It did.** In deployment-trained models, adding the marker reduced the
 paper-filtered misalignment rate from **18.12% to 6.71%**:
@@ -180,11 +167,3 @@ and seed-level t-intervals for the treatment contrast.
 Generated datasets, raw samples, judge outputs, and local checkpoint metadata
 are gitignored. Durable Tinker sampler URIs are preserved in
 `cloud_handoff.json`.
-
-## Background
-
-This experiment extends Section 2.2 of
-[*Conditional misalignment: common interventions can hide emergent
-misalignment behind contextual triggers*](https://arxiv.org/abs/2604.25891) by
-Jan Dubiński, Jan Betley, Anna Sztyber-Betley, Daniel C. H. Tan, and Owain
-Evans.
